@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recommend">
+<select id="opt1" resultType="com.example.SyLibrary.admin.model.dto.BookDTO">
+select b_id, b_name, b_author, b_url from recmd_pop
+</select>
+
+<select id="opt2" resultType="com.example.SyLibrary.admin.model.dto.BookDTO">
+select b_id, b_name, b_author, b_url from recmd_udf   
+</select>
+
+<select id="opt3" resultType="java.util.Map">
+select rownum, idx, b_id, b_name, b_author, b_pub, b_year, a_name, to_char(post_date, 'yyyy-MM-dd') post_date
+from recmd_udf   
+</select>
+
+<select id="pre_count" resultType="int">
+select count(*) from recommend
+</select>
+
+<select id="pre_check" resultType="int">
+select count(*) from recommend where b_id=#{b_id}
+</select>
+
+
+<select id="recmd_insert" statementType="CALLABLE">
+	{call recmd_insert(#{b_id}, #{a_id})}
+</select>
+
+<delete id="delete">
+delete from recommend 
+	<trim prefix="WHERE" prefixOverrides="AND | OR ">
+		<if test="option != 'all'">
+		idx=#{idx}
+		</if>
+	</trim>	
+</delete>
+</mapper>

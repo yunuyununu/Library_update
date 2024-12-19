@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="checkout">
+
+<select id="loCount" resultType="int">
+	select count(*) from lo_book
+	where L_RETURN_YN='N' and L_BOOKID=#{b_id}
+</select>
+
+<select id="reCount" resultType="int">
+	select count(*) from re_book
+	where R_BOOKID=#{b_id} and r_reservation <![CDATA[>=]]> 0
+</select>
+
+<select id="retDate" resultType="String">
+	select A.*
+	from
+	    (select to_char(l_retdate, 'yyyy-mm-dd')  be_return
+	    from lo_book
+	    where L_RETURN_YN='N' and l_bookid=#{b_id}) A
+	where be_return <![CDATA[>]]> sysdate and rownum=1
+</select>
+
+<insert id="insert_Lobook" parameterType="map">
+	insert into lo_book(l_num, l_memno, l_bookid)
+	values (lo_book_seq.nextval, 
+		(select m_no from sl_member where m_id=#{m_id}), 
+		#{b_id})
+</insert>
+
+<resultMap id="result_mloan" type="java.util.Map"></resultMap>
+<select id="check_mLoan" parameterType="map" statementType="CALLABLE" resultMap="result_mloan">
+	{call check_loan_0(
+		#{userid, mode=IN, jdbcType=VARCHAR}, 
+		#{p_result, mode=OUT, jdbcType=INTEGER}
+	)}
+</select>
+
+<select id="check_duplicate" resultType="int">
+	select count(*)
+	from (select * from lo_all_book where m_id=#{m_id} and l_return_yn='N')
+	where l_bookid=#{b_id}
+</select>
+
+<select id="call_checkLevel" statementType="CALLABLE">
+	{call check_level(#{m_id})}
+</select>
+
+</mapper>

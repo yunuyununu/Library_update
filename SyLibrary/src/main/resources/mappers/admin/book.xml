@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+<select id="list" resultType="com.example.SyLibrary.admin.model.dto.BookDTO">
+	select *
+	from (
+		select rownum as rn, A.*
+		from (
+			select b_id, b_name, b_author, b_pub, b_year, b_category 
+			from sl_book 
+			<include refid="search"/>
+			order by b_id
+		) A
+	) where rn between #{start} and #{end}
+</select>
+<select id="select_cg" resultType="String">
+	select distinct b_category from sl_book
+</select>
+<insert id="insert">
+	insert into sl_book (b_id,b_name,b_author,b_pub,b_year,b_category,b_isbn,b_amount,b_url,b_description,b_ct_num)
+	values (book_seq.nextval, #{b_name}, #{b_author}, #{b_pub}, #{b_year}, #{b_category}, #{b_isbn}, #{b_amount}, #{b_url}, #{b_description}, #{ct_number})
+</insert> 
+<select id="edit" resultType="com.example.SyLibrary.admin.model.dto.BookDTO">
+	select * from sl_book where b_id=#{b_id}
+</select>
+<select id="update">
+update sl_book set b_name=#{b_name}, b_author=#{b_author}, b_pub=#{b_pub}, b_year=#{b_year}, b_amount=#{b_amount}, b_description=#{b_description},
+b_url=#{b_url}, b_category=#{b_category}, b_ct_num = #{ct_number}
+where b_id=#{b_id}
+</select>
+<delete id="delete">
+	 delete from sl_book where b_id=#{b_id}
+</delete>
+<select id="count" resultType="int">
+	select count(*) from sl_book
+	<include refid="search"/>
+</select>
+<select id="search_count" resultType="int">
+	select count(*) from sl_book
+	where ${search_option} like '%' || #{keyword} || '%' 
+</select>
+<select id="url_cate" resultType="String">
+	select b_url from sl_book where b_id=#{b_id}
+</select>
+
+<sql id="search">
+	<choose>
+		<when test="search_option == 'none' ">
+			where b_id like '%' || #{keyword} || '%'
+			or b_name like '%' || #{keyword} || '%'
+			or b_author like '%' || #{keyword} || '%'
+			or b_pub like '%' || #{keyword} || '%'
+			or b_category like '%' || #{keyword} || '%'
+		</when>
+		<otherwise>
+			where ${search_option} like '%' || #{keyword} || '%'
+		</otherwise>
+	</choose>
+</sql>
+
+<select id="ctct" resultType="int">
+select nvl(count(ct_number),0) from ct_book
+where #{word} like '%' || category || '%'
+</select>
+
+<select id="ins_ct" resultType="int">
+select nvl(ct_number,0) from ct_book
+where #{word} like '%' || category || '%'
+</select>
+
+<select id="ct_count" resultType="int">
+select count(*) from ct_book
+</select>
+
+<select id="ct_list" resultType="com.example.SyLibrary.admin.model.dto.CtBookDTO">
+select *
+	from (
+		select rownum as rn, A.*
+		from (
+			select category, ct_number
+			from ct_book 
+			order by ct_number
+		) A
+	) where rn between #{start} and #{end}
+</select>
+
+<select id="check_ct" resultType="int">
+select nvl(count(*),0) from ct_book where category=#{category} or ct_number=#{ct_number}
+</select>
+<insert id="insert_ct">
+	insert into ct_book (category, ct_number)
+	values (#{category}, #{ct_number})
+</insert> 
+
+<delete id="del_ct">
+	 delete from ct_book where ct_number=#{ct_number}
+</delete>
+</mapper>

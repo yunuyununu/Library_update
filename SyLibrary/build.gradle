@@ -38,13 +38,24 @@ dependencies {
 	// 프로젝트 생성 후 추가
 	compileOnly("org.springframework.boot:spring-boot-devtools")
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.18'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.33'
 	compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
 	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
 	implementation 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+	
+	implementation'org.apache.tomcat:tomcat-util:10.1.33'
+	implementation'org.springframework.boot:spring-boot-starter-mail:3.2.2'
+
+	
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+    
+    implementation'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation'org.springframework.security:spring-security-taglibs:6.2.2'
 }
 
 tasks.named('test') {
