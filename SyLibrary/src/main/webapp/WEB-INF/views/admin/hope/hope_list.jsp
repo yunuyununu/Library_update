@@ -119,7 +119,7 @@ padding-bottom: 20px;
 	<div style="width:1000px;">
 	<div class="page-direction" style="padding: 20px; padding-left: 250px;">
 		<div class="navi">
-				<span style="font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;희망도서</span> <i class="bi bi-chevron-right"></i>
+				<span style="font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;희망도서</span>
 		</div>
 	</div>
 
@@ -189,7 +189,7 @@ padding-bottom: 20px;
 			</div>
 		</div>
 	</form>
-	<table border="1">
+	<table border="1" style="width: 1100px;">
 		<tr align="center" style="color: white; font-size: 17px;">
 			<th>신청번호</th>
 			<th>도서명</th>
@@ -212,7 +212,7 @@ padding-bottom: 20px;
 						<td>${dto.h_memid}</td>
 						<td>${dto.h_regdate}</td>
 						<td>${dto.h_chkdate}</td>
-						<td>${dto.h_state}&nbsp;</td>
+						<td style="color:blue;">${dto.h_state}&nbsp;</td>
 					</tr>
 				</c:forEach>
 

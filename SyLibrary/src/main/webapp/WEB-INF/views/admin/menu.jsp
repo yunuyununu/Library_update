@@ -17,7 +17,7 @@ html, body {
 	width: 225px;
 	margin: 0;
 	position: absolute;
-	height: 100%;
+	height: 130%;
 	float: left;
 	padding-right: 20px;
 }

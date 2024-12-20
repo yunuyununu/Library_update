@@ -55,19 +55,18 @@ function logout() {
 }
 </script>
 <body>
-	<nav class="navbar navbar-expand-lg" style="background-color: #FBFBFD;">
+	<nav class="navbar navbar-expand-md" style="background-color: #FBFBFD;">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/"> <img
 				src="/resources/images/icon.png" width="60px" height="60px"> <b>
 					3월 도서관</b>
 			</a>
-
-			<button class="navbar-toggler" type="button"
+			 <button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
 				aria-controls="navbarNavDarkDropdown" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
-			</button>
+			</button> 
 
 			<div class="collapse navbar-collapse justify-content-end"
 				id="navbarNavDropdown">

@@ -41,7 +41,7 @@
 					type : "get",
 					contentType : "text/html;charset=utf-8",
 					success : function(data) {
-						for (let j = 0; j < 7; j++) {
+						for (let j = 0; j < data.length; j++) {
 							category.push(data[j].CATEGORY);
 							cnt.push(data[j].CNT);
 						}

@@ -22,7 +22,6 @@ public class ChartDAOImpl implements ChartDAO {
 	@Override
 	public List<Map<String, Object>> loChart() {
 		List<Map<String, Object>> chart = sqlSession.selectList("chart.loanChart");
-		System.out.println("DAOIM:"+chart);
 		return chart;
 	}
 }

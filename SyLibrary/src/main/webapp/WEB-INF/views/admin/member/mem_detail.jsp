@@ -184,8 +184,8 @@ th {
 										<c:otherwise>
 											<c:forEach var="mem_list" items="${map.mem_list}">
 												<tr align="center">
-													<td height="38px">&nbsp;&nbsp;${mem_list.b_name}&nbsp;&nbsp;</td>
-													<td height="38px">&nbsp;${mem_list.b_author}&nbsp;</td>
+													<td width="220px" height="38px">&nbsp;&nbsp;${mem_list.b_name}&nbsp;&nbsp;</td>
+													<td width="150px" height="38px">&nbsp;${mem_list.b_author}&nbsp;</td>
 													<td width="130px" height="38px">${mem_list.l_lodate}</td>
 													<td width="130px" height="38px">${mem_list.l_retdate}</td>
 												</tr>

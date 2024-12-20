@@ -6,8 +6,12 @@
 <meta charset="UTF-8">
 <link rel="icon" href="/resources/images/icon.png" type="image/x-icon">
 <script src="http://code.jquery.com/jquery-3.7.1.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=81721d18b772f4418205b8ac5f1d014c"></script>
+<!-- <script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=15cf0569cf4a87d8506dd5b2e7007c04"></script> -->
+	
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=15cf0569cf4a87d8506dd5b2e7007c04"></script>
+	
+	
 <link rel="stylesheet" href="/resources/static/user.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -120,16 +124,16 @@
 	</div>
 </body>
 <script>
-	var mapContainer = document.getElementById('map'), //지도가 나올 div
-	mapOption = {
-		center : new kakao.maps.LatLng(37.55655, 126.91952),
-		level : 3
-	};
-
+	var mapContainer = document.getElementById('map'); //지도가 나올 div
+	var mapOption = {
+			center : new kakao.maps.LatLng(37.553074, 126.936856),
+			level : 3 // 지도의 레벨(확대, 축소 정도)
+		};
+	
 	var map = new kakao.maps.Map(mapContainer, mapOption);
 
 	// 마커 위치
-	var markerPosition = new kakao.maps.LatLng(37.55655, 126.91952);
+	var markerPosition = new kakao.maps.LatLng(37.553074, 126.936856);
 
 	// 마커 이미지
 	var imageSrc = "/resources/images/marker.png";
@@ -152,11 +156,11 @@
 
 	// 커스텀 오버레이 내용
 	var content = '<div class="customoverlay">'
-			+ '  <a href="https://map.kakao.com/link/to/3월 도서관, 37.55655, 126.91952" target="_blank">'
+			+ '  <a href="https://map.kakao.com/link/to/3월 도서관, 37.553074, 126.936856" target="_blank">'
 			+ '    <span class="title">3월 도서관</span>' + '  </a>' + '</div>';
 
 	// 커스텀 오버레이 위치
-	var position = new kakao.maps.LatLng(37.55655, 126.91952);
+	var position = new kakao.maps.LatLng(37.553074, 126.936856);
 
 	// 커스텀 오버레이 생성
 	var customOverlay = new kakao.maps.CustomOverlay({
